@@ -213,20 +213,22 @@ class GoogleReviewController extends Controller
             $i++;
         }
         //  dd($placeName);
-        // $data = [
-        //     'name' => $request->name,
-        //     'description'=>'Thank you for your inquiry!
-        //     Your Results
-        //     We will check your google business profile and get back to you soon as possible.
+        $data = [
+            'name' => $request->email,
+            'Address' => $request->place_id,
+            'Desired Rating' => $request->rating,
+            'description'=>'Thank you for your inquiry!
+            Your Results
+            We will check your google business profile and get back to you soon as possible.
             
-        //     A details analysis of your profile will now carried out by the lower.
+            A details analysis of your profile will now carried out by the lower.
             
-        //     Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, placeat.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, placeat.
             
-        //     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit nostrum quos itaque autem perspiciatis ipsa rem quisquam quasi neque vero.'
-        // ];
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit nostrum quos itaque autem perspiciatis ipsa rem quisquam quasi neque vero.'
+        ];
        
-        // Mail::to($request->email)->send(new MyCustomEmail($data));
+        Mail::to('leo@starboost.ch')->send(new MyCustomEmail($data));
     //   dd($business_details);
        return view('reviews.indexx', compact('business_details','lat','lng','business_detailss','placeName','DesiredRating'));
     }
