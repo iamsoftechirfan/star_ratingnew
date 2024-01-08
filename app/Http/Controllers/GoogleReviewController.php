@@ -213,22 +213,33 @@ class GoogleReviewController extends Controller
             $i++;
         }
         //  dd($placeName);
-        $data = [
-            'name' => $request->email,
-            'Address' => $request->place_id,
-            'Desired Rating' => $request->rating,
-            'description'=>'Thank you for your inquiry!
-            Your Results
-            We will check your google business profile and get back to you soon as possible.
-            
-            A details analysis of your profile will now carried out by the lower.
-            
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, placeat.
-            
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit nostrum quos itaque autem perspiciatis ipsa rem quisquam quasi neque vero.'
-        ];
-       
-        Mail::to('leo@starboost.ch')->send(new MyCustomEmail($data));
+        try {
+            $data = [
+                'Email' => $request->email,
+                'Address' => $request->place_id,
+                'Desired_Rating' => $request->rating,
+                'description' => 'Thank you for your inquiry! Your Results. We will check your Google Business profile and get back to you as soon as possible. A detailed analysis of your profile will now be carried out by the team. Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit, placeat. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit nostrum quos itaque autem perspiciatis ipsa rem quisquam quasi neque vero.'
+            ];
+        
+            $new=Mail::to('leo@starboost.ch')->send(new MyCustomEmail($data));
+        // dd($new);
+            // Additional logic after sending the email (if needed)
+            // ...
+        
+            // You can also use "dd" to see the data in case of success
+            // dd('Email sent successfully', $data);
+        
+        } catch (\Exception $e) {
+            dd($e);
+            // Handle the exception
+            // You can log the error, redirect the user, or perform other actions
+        
+            // For now, let's log the error and display a generic message
+            \Log::error('Email sending failed: ' . $e->getMessage());
+        
+            // Display a generic error message to the user
+            return response()->json(['error' => 'Failed to send email. Please try again.'], 500);
+        }
     //   dd($business_details);
        return view('reviews.indexx', compact('business_details','lat','lng','business_detailss','placeName','DesiredRating'));
     }

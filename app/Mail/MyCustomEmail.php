@@ -23,6 +23,7 @@ class MyCustomEmail extends Mailable
 
     public function build()
     {
+        // dd($this->data);
         return $this->view('emails.my_custom_template')
                     ->with($this->data);
     }
