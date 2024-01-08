@@ -200,13 +200,13 @@ referrerpolicy="no-referrer-when-downgrade"
                     <h3><?php
                                 if($neededPoints>=95)
                                 {
-                                    $month= number_format($neededPoints/95,1); 
+                                    $month= number_format($neededPoints/95,0); 
                                     echo $month.' months';
                                     
                                 }
                                 else
                                 {
-                                $days=number_format((30/95)*($neededPoints),1);
+                                $days=number_format((30/95)*($neededPoints),0);
                                 echo $days.' days';
                                
                                 }
@@ -225,13 +225,13 @@ referrerpolicy="no-referrer-when-downgrade"
                     <br />
                     <h3> <?php  if($neededPoints>=95)
                                 {
-                                   $month= number_format($neededPoints/4,1); 
+                                   $month= number_format($neededPoints/4,0); 
                                     echo $month.' months';
                                     
                                 }
                                 else
                                 {
-                                $days=number_format((30/4)*($neededPoints),1);
+                                $days=number_format((30/4)*($neededPoints),0);
                                 echo $days.' days';
                                
                                 }
